@@ -1,0 +1,39 @@
+using System;
+/* Tēma: Degviela un naftas produkti;
+   Klase: Degviela; 
+   Apakšklases: Benzīns, Dīzeļdegviela.*/
+class HelloWorld {
+  static void Main() {
+    Benzins benzins = new Benzins();
+    benzins.Informacija();
+  }
+}
+
+using System;
+public abstract class Degviela
+{
+    // Mainīgie.
+    protected string nosaukums;
+    protected string krasa;
+    protected double cenaParLitru;
+    protected double nobraucamieMetriParBaku;
+    // Metodes.
+    public virtual void Informacija()
+    {
+        Console.WriteLine("nosaukums: {0}, krasa: {1}, cena: {2}, cik metrus var nobraukt ar vienu bāku: {3}",
+        nosaukums, krasa, cenaParLitru, nobraucamieMetriParBaku);
+    }
+}
+
+
+using System;
+public class Benzins : Degviela
+{
+    public Benzins()
+    {
+        nosaukums = "benzins";
+        krasa = "dzeltanīgs";
+        cenaParLitru = 1.68;
+        // Dīzeļdegviela: tas pats.
+    }
+}
