@@ -3,53 +3,36 @@ public class Dizeldegviela : Degviela
 {
     public Dizeldegviela(int autoDegvielasPaterinaEfektivitate)
     {
-        // 20% Labāka efektivitāte.
+        // 20% Labāka efektivitāte par bendzīnu.
         nosaukums = "dīzelis";
         krasa = "oranžs";
-        cenaParLitru = 1.68;
-        this.autoDegvielasPaterinaEfektivitate = autoDegvielasPaterinaEfektivitate;
+        cenaParLitru = 1.82; // Lētāks par bendzīnu.
+        this.autoDegvielasPaterinaEfektivitate = autoDegvielasPaterinaEfektivitate; // x litri par 100 km
     }
     
     /// Abstraktie override:
-    public override void DemonstretEfektivitati(int distanceKilometros, int litriBaka)
+    public override void AprekinatDegvieluDistancei(int distanceKilometros)
     {
-        Console.WriteLine($"----------- Efektivitāte uz {distanceKilometros} kilometriem -----------");
-        Console.WriteLine($"0           {distanceKilometros * 0.25}           {distanceKilometros * 0.5}           {distanceKilometros * 0.75}           {distanceKilometros}");
-        // 100%  --->  X %, tagad 100 - > 1 %
-        // Dotie dati:
-        /* 
-        Distance,
-        Litri auto bākā.
-        
-        */
-        // 
-        for (
-        double i = AprekinatCikLitrusVajadzesPrieksDotasDistances(distanceKilometros) ; i > 0 ; i -= AprekinatCikLitrusVajadzesPrieksDotasDistances(distanceKilometros) * 0.1 * nobraucamieKilometriParLitruDegvielas()
-        )
-        {
-            Console.Write("-");
-        }
-        
-    }
-    
-    public override double AprekinatCikLitrusVajadzesPrieksDotasDistances(int distanceKilometros)
-    {
-        return nobraucamieKilometriParLitruDegvielas() * distanceKilometros;
+        /* Metode aprēķina un izvada, cik daudz degvielas vajadzēs priekš 
+           norādītās distances.                              */
+        Console.WriteLine($"----------------Degviela priekš {distanceKilometros} km.-----------------");
+        Console.WriteLine(PateretaDegvielaParVienuKilometru() * distanceKilometros + " Litri.");
     }
     
     
-    public override double nobraucamieKilometriParLitruDegvielas()
+    public override double PateretaDegvielaParVienuKilometru()
     {
-        // 20% efektīvāks par bendzīnu.
-        double nobraucamieKilometriParLitruDegvielas = autoDegvielasPaterinaEfektivitate / 100.0;
-        return nobraucamieKilometriParLitruDegvielas + nobraucamieKilometriParLitruDegvielas * 0.2;
+        /* Metode atgriež auto patēriņu (litros) par 1 kilometru
+           Dīzeļdegviela ir par 20% efektīvāka par bendzīnu.  */
+        double autoPaterinsParVienuKilometru = autoDegvielasPaterinaEfektivitate / 100.0;
+        return autoPaterinsParVienuKilometru - autoPaterinsParVienuKilometru * 0.2; // Dīzeļdegvielai + 20% efektivitāte, tātad patērīņš - 20%
     }
     
     /// Virtuālie override:
     public override void Informacija()
     {
         base.Informacija();
-        Console.WriteLine("litrs par kilometru: " + nobraucamieKilometriParLitruDegvielas());
+        Console.WriteLine("Degviela par 1 km.: " + PateretaDegvielaParVienuKilometru());
         Console.WriteLine("Sastāvs: alkāni 75%, aromātiskie ogļūdeņraži 25%.");
     }
 }
