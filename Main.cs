@@ -7,12 +7,16 @@ class HelloWorld {
     // Atsauce uz objektu.
     Degviela degviela;
     
-    degviela = new Benzins(5);
+    // Bendzīns:
+    degviela = new Benzins(9); // Patēriņš par 100 km.
     degviela.Informacija();
-    degviela.DemonstretEfektivitati(100);
+    degviela.AprekinatDegvieluDistancei(460);
+    degviela.AprekinatCenuBraucienam(460);
     
-    degviela = new Dizeldegviela(50);
+    // Dīzeļdegviela:
+    degviela = new Dizeldegviela(9); // Patēriņš par 100 km.
     degviela.Informacija();
-    degviela.DemonstretEfektivitati(500);
+    degviela.AprekinatDegvieluDistancei(460);
+    degviela.AprekinatCenuBraucienam(460);
   }
 }
