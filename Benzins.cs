@@ -5,33 +5,32 @@ public class Benzins : Degviela
     {
         nosaukums = "benzīns";
         krasa = "dzeltanīgs";
-        cenaParLitru = 1.68;
-        this.autoDegvielasPaterinaEfektivitate = autoDegvielasPaterinaEfektivitate;
+        cenaParLitru = 2.04; // Dārgāks par dīzeli.
+        this.autoDegvielasPaterinaEfektivitate = autoDegvielasPaterinaEfektivitate; // x litri par 100 km
 
     }
     
     /// Abstraktie override:
-    public override void DemonstretEfektivitati(int distanceKilometros)
+    public override double PateretaDegvielaParVienuKilometru()
     {
-        
-    }
-    
-    public override double nobraucamieKilometriParLitruDegvielas()
-    {
+        /* Metode atgriež auto patēriņu (litros) par 1 kilometru
+           Dīzeļdegviela ir par 20% efektīvāka par bendzīnu.  */
         return autoDegvielasPaterinaEfektivitate / 100.0;
     }
     
-    public override double AprekinatCikLitrusVajadzesPrieksDotasDistances(int distanceKilometros)
+    public override void AprekinatDegvieluDistancei(int distanceKilometros)
     {
-        Console.WriteLine(nobraucamieKilometriParLitruDegvielas() * distanceKilometros);
-        return nobraucamieKilometriParLitruDegvielas() * distanceKilometros;
+        /* Metode aprēķina un atgriež, cik daudz degvielas vajadzēs priekš 
+           norādītās distances.                              */
+        Console.WriteLine($"----------------Degviela priekš {distanceKilometros} km.-----------------");
+        Console.WriteLine(PateretaDegvielaParVienuKilometru() * distanceKilometros + " Litri.");
     }
     
     /// Virtuālie override:
     public override void Informacija()
     {
         base.Informacija();
-        Console.WriteLine("litrs par kilometru: " + nobraucamieKilometriParLitruDegvielas());
+        Console.WriteLine("Degviela par 1 km.: " + PateretaDegvielaParVienuKilometru());
         Console.WriteLine("Sastāvs: dažādi ogļūdeņraži 100%.");
     }
 }
