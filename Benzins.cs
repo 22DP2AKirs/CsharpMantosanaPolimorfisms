@@ -1,26 +1,37 @@
 using System;
 public class Benzins : Degviela
 {
-    public Benzins()
+    public Benzins(int autoDegvielasPaterinaEfektivitate)
     {
         nosaukums = "benzīns";
         krasa = "dzeltanīgs";
         cenaParLitru = 1.68;
-        // Dīzeļdegviela: tas pats.
+        this.autoDegvielasPaterinaEfektivitate = autoDegvielasPaterinaEfektivitate;
+
     }
     
-    public override void DemonstretEfektivitati()
+    /// Abstraktie override:
+    public override void DemonstretEfektivitati(int distanceKilometros)
     {
         
     }
     
-    public override void ParbauditIespejuNobrauktVisuDistanci(int distanceMetros)
+    public override double nobraucamieKilometriParLitruDegvielas()
     {
-        
+        return autoDegvielasPaterinaEfektivitate / 100.0;
     }
     
-    public override double nobraucamieMetriParLitru()
+    public override double AprekinatCikLitrusVajadzesPrieksDotasDistances(int distanceKilometros)
     {
-        return 0.0;
+        Console.WriteLine(nobraucamieKilometriParLitruDegvielas() * distanceKilometros);
+        return nobraucamieKilometriParLitruDegvielas() * distanceKilometros;
+    }
+    
+    /// Virtuālie override:
+    public override void Informacija()
+    {
+        base.Informacija();
+        Console.WriteLine("litrs par kilometru: " + nobraucamieKilometriParLitruDegvielas());
+        Console.WriteLine("Sastāvs: dažādi ogļūdeņraži 100%.");
     }
 }
