@@ -1,9 +1,26 @@
 using System;
 public class Benzins : Degviela
 {
-    public Benzins(int autoDegvielasPaterinaEfektivitate)
+    public Benzins(int autoDegvielasPaterinaEfektivitate, string dizeldegvielasTips)
     {
+        /* Bendzīna varianti:  E95, E98*/
         nosaukums = "benzīns";
+        dizeldegvielasTips.ToUpper();
+        if (dizeldegvielasTips.Equals("E95"))
+        {
+            nosaukums = "Neste Futura 95";
+            cenaParLitru = 1.68;
+        }
+        else if (dizeldegvielasTips.Equals("E98"))
+        {
+            nosaukums = "Neste Futura 98";
+            cenaParLitru = 1.73;
+        }
+        else
+        {
+            nosaukums = "NoName";
+            cenaParLitru = 0;
+        }
         krasa = "dzeltanīgs";
         cenaParLitru = 2.04; // Dārgāks par dīzeli.
         this.autoDegvielasPaterinaEfektivitate = autoDegvielasPaterinaEfektivitate; // x litri par 100 km
