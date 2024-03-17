@@ -15,6 +15,7 @@ public abstract class Degviela
     
     // Metodes:
     /// Abstraktās:
+    public abstract void PircejuTabula(int maksimalaisPircejuSkDiena, int aptuvenieBakasIzmeri);
     public abstract void AprekinatDegvieluDistancei(int distanceKilometros);
     public abstract double PateretaDegvielaParVienuKilometru();
     
@@ -26,10 +27,27 @@ public abstract class Degviela
         nosaukums, krasa, cenaParLitru);
     }
     
-    /// Parastā metode:
+    /// Parastās metodes:
     public void AprekinatCenuBraucienam(int distance)
     {
         Console.WriteLine($"-----------Cena priekš brauciena ({distance} km.)-------------");
         Console.WriteLine("Cena: " + Math.Round(cenaParLitru * (distance * PateretaDegvielaParVienuKilometru()), 2) + " Eiro.");
+    }
+    
+    /// Palīgmetodes, kuras strādā tikai starp 'bērniem'.
+    protected string PieliktAtstarpesPieTekstaBeigam(int maksimalaisSimboluSK, double vertiba)
+    {
+        string vertibaStr = vertiba.ToString();
+        while (vertibaStr.Length < maksimalaisSimboluSK)
+        {
+            vertibaStr += " ";
+        }
+        return vertibaStr;
+    }
+    
+    protected string AprekinatTabulasCenas(int tekstaIzmers, int maksimalaisPircejuSkDiena, int aptuvenieBakasIzmeri)
+    {
+        //         Metode(teksta izmērs  ; objekta cena par litru  ; cik pircēju būs tanī dienā  ; aptuvenais bākas izmērs, kas būs atnākušajiem pircējiem);
+        return PieliktAtstarpesPieTekstaBeigam(tekstaIzmers, cenaParLitru * Project.rand.Next(maksimalaisPircejuSkDiena) * Project.rand.Next(aptuvenieBakasIzmeri - 10, aptuvenieBakasIzmeri + 1));
     }
 }
