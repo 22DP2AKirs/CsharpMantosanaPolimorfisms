@@ -2,21 +2,24 @@ using System;
 /* Tēma: Degviela un naftas produkti;
    Klase: Degviela; 
    Apakšklases: Benzīns, Dīzeļdegviela.*/
-class HelloWorld {
+class Project {
+  public static Random rand = new Random();
   static void Main() {
     // Atsauce uz objektu.
     Degviela degviela;
     
     // Bendzīns:
-    degviela = new Benzins(9, "E95"); // Patēriņš par 100 km.
+    degviela = new Benzins("E95", 9); // Patēriņš par 100 km.
     degviela.Informacija();
     degviela.AprekinatDegvieluDistancei(460);
     degviela.AprekinatCenuBraucienam(460);
+    degviela.PircejuTabula(5, 40);
     
     // Dīzeļdegviela:
-    degviela = new Dizeldegviela(9, "95"); // Patēriņš par 100 km.
+    degviela = new Dizeldegviela("95", 9); // Patēriņš par 100 km.
     degviela.Informacija();
     degviela.AprekinatDegvieluDistancei(460);
     degviela.AprekinatCenuBraucienam(460);
+    degviela.PircejuTabula(5, 40);
   }
 }
